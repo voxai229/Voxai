@@ -3,39 +3,153 @@
 <head>
   <title>VoxAI</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial;
+      background: #0d0d0d;
+      color: white;
+    }
+
+    header {
+      text-align: center;
+      padding: 30px;
+    }
+
+    h1 {
+      font-size: 32px;
+    }
+
+    .section {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .btn {
+      padding: 12px 20px;
+      background: #4CAF50;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    #chat {
+      height: 300px;
+      overflow-y: auto;
+      border: 1px solid #333;
+      margin: 20px;
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    .msg {
+      margin: 5px;
+      padding: 8px;
+      border-radius: 8px;
+      max-width: 70%;
+    }
+
+    .user {
+      background: #4CAF50;
+      margin-left: auto;
+    }
+
+    .ai {
+      background: #333;
+      margin-right: auto;
+    }
+
+    #inputBox {
+      display: flex;
+      margin: 10px;
+    }
+
+    input {
+      flex: 1;
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      color: gray;
+    }
+  </style>
 </head>
 
-<body style="background:black; color:white; font-family:Arial; text-align:center;">
+<body>
 
-<h1>🚀 VoxAI</h1>
-<p>Support our AI App development 💡</p>
+<header>
+  <h1>🚀 VoxAI</h1>
+  <p>The Future AI Assistant 🤖</p>
+</header>
 
-<h2>🤖 Try Demo</h2>
+<div class="section">
+  <h2>💡 About</h2>
+  <p>VoxAI helps you build apps, websites and automate your work using AI.</p>
+</div>
 
-<input id="msg" placeholder="Type here..." style="padding:10px;">
-<button onclick="send()">Send</button>
+<div class="section">
+  <h2>💰 Support Us</h2>
+  <p>UPI: <b>yourupi@upi</b></p>
+  <button class="btn">Donate Now</button>
+</div>
 
-<p id="output"></p>
+<div class="section">
+  <h2>🤖 Try VoxAI Demo</h2>
+</div>
+
+<div id="chat"></div>
+
+<div id="inputBox">
+  <input id="msg" placeholder="Ask something..." />
+  <button class="btn" onclick="sendMsg()">Send</button>
+</div>
+
+<footer>
+  VoxAI © 2026 | Built with ❤️
+</footer>
 
 <script>
-function send() {
-  let text = document.getElementById("msg").value;
-  
-  if(text.trim() === "") {
-    alert("Type something!");
-    return;
-  }
+function sendMsg() {
+  let input = document.getElementById("msg");
+  let chat = document.getElementById("chat");
 
-  let reply = "🤖 VoxAI: ";
+  if(input.value.trim() === "") return;
 
+  let userMsg = document.createElement("div");
+  userMsg.className = "msg user";
+  userMsg.innerText = input.value;
+  chat.appendChild(userMsg);
+
+  let aiMsg = document.createElement("div");
+  aiMsg.className = "msg ai";
+  aiMsg.innerText = "🤖 " + generateReply(input.value);
+
+  setTimeout(() => {
+    chat.appendChild(aiMsg);
+    chat.scrollTop = chat.scrollHeight;
+  }, 500);
+
+  input.value = "";
+}
+
+function generateReply(text) {
   text = text.toLowerCase();
 
-  if(text.includes("hello")) reply += "Hi 👋 I'm VoxAI!";
-  else if(text.includes("ai")) reply += "AI is powerful 🔥";
-  else if(text.includes("app")) reply += "I can help build apps 🚀";
-  else reply += "I'm still learning... support me 💡";
+  if(text.includes("hello")) return "Hi 👋 I'm VoxAI!";
+  if(text.includes("ai")) return "VoxAI will revolutionize AI 🚀";
+  if(text.includes("app")) return "I can help you build apps easily 😎";
+  if(text.includes("website")) return "Create websites instantly with VoxAI 💻";
+  if(text.includes("money")) return "Support us to build something amazing 💰";
 
-  document.getElementById("output").innerText = reply;
+  return "I'm evolving... support VoxAI to unlock full power 🚀";
 }
 </script>
 
