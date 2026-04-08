@@ -2,36 +2,42 @@
 <html>
 <head>
   <title>VoxAI</title>
-  <style>
-    body {
-      background: black;
-      color: white;
-      text-align: center;
-      font-family: Arial;
-    }
-    input, button {
-      padding: 10px;
-      margin: 5px;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body>
+<body style="background:black; color:white; font-family:Arial; text-align:center;">
 
 <h1>🚀 VoxAI</h1>
 <p>Support our AI App development 💡</p>
 
-<h2>💰 Donate</h2>
-<p>UPI: yourupi@upi</p>
+<h2>🤖 Try Demo</h2>
 
-<hr>
-
-<h2>🤖 Try VoxAI Demo</h2>
-
-<input id="msg" placeholder="Ask something..." />
-<button onclick="reply()">Send</button>
+<input id="msg" placeholder="Type here..." style="padding:10px;">
+<button onclick="send()">Send</button>
 
 <p id="output"></p>
 
 <script>
-function reply(
+function send() {
+  let text = document.getElementById("msg").value;
+  
+  if(text.trim() === "") {
+    alert("Type something!");
+    return;
+  }
+
+  let reply = "🤖 VoxAI: ";
+
+  text = text.toLowerCase();
+
+  if(text.includes("hello")) reply += "Hi 👋 I'm VoxAI!";
+  else if(text.includes("ai")) reply += "AI is powerful 🔥";
+  else if(text.includes("app")) reply += "I can help build apps 🚀";
+  else reply += "I'm still learning... support me 💡";
+
+  document.getElementById("output").innerText = reply;
+}
+</script>
+
+</body>
+</html>
