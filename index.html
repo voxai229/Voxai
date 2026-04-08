@@ -34,14 +34,4 @@
 <p id="output"></p>
 
 <script>
-function reply() {
-  let input = document.getElementById("msg").value;
-  let output = document.getElementById("output");
-
-  if(input === "") return;
-
-  output.innerHTML = "🤖 VoxAI: " + fakeAI(input);
-}
-
-function fakeAI(text) {
-  text = text.toLowerCase();
+function reply(
