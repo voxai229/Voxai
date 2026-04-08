@@ -1,20 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>VoxAI Fund</title>
+  <title>VoxAI</title>
+  <style>
+    body {
+      background: black;
+      color: white;
+      text-align: center;
+      font-family: Arial;
+    }
+    input, button {
+      padding: 10px;
+      margin: 5px;
+    }
+  </style>
 </head>
 
-<body style="text-align:center; font-family:sans-serif; background:black; color:white;">
+<body>
 
-  <h1>🚀 VoxAI</h1>
-  <p>Support our AI App development 💡</p>
+<h1>🚀 VoxAI</h1>
+<p>Support our AI App development 💡</p>
 
-  <h2>💰 Donate</h2>
-  <p>UPI: yourupi@upi</p>
+<h2>💰 Donate</h2>
+<p>UPI: yourupi@upi</p>
 
-  <button style="padding:10px 20px; background:red; color:white; border:none; border-radius:10px;">
-    Donate Now
-  </button>
+<hr>
 
-</body>
-</html>
+<h2>🤖 Try VoxAI Demo</h2>
+
+<input id="msg" placeholder="Ask something..." />
+<button onclick="reply()">Send</button>
+
+<p id="output"></p>
+
+<script>
+function reply() {
+  let input = document.getElementById("msg").value;
+  let output = document.getElementById("output");
+
+  if(input === "") return;
+
+  output.innerHTML = "🤖 VoxAI: " + fakeAI(input);
+}
+
+function fakeAI(text) {
+  text = text.toLowerCase();
